@@ -7,6 +7,6 @@ set(CMAKE_CXX_STANDARD 14)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable(Steganografia main.cpp steganography/steganography.cpp utils/utils.cpp Configuration.h utils/utils.h utils/config_utils.cpp utils/config_utils.h steganography/steganography.h steganalysis/steganalysis.cpp steganalysis/steganalysis.h)
+add_executable(Steganografia main.cpp steganography/steganography.cpp utils/utils.cpp utils/config_utils.cpp steganalysis/steganalysis.cpp)
 
 target_link_libraries(Steganografia ${OpenCV_LIBS})
