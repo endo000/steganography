@@ -66,19 +66,34 @@ uint32_t calculate_length(const std::vector<uint8_t> &message, const Configurati
 
 bool check_sizes(const cv::Mat &image, const uint32_t &length, const Configuration &config) {
     uint64_t image_size = image.rows * image.cols; // pixels
+
+    if (config.VERBOSE) {
+        printf("Image size: %lld, length: %d\n", image_size, length);
+    }
+
     if (image_size > length) {
         return true;
     }
 
     if (is_all_channels(config)) {
         image_size *= 3;
+
+        if (config.VERBOSE) {
+            printf("Image size(all channels): %lld, length: %d\n", image_size, length);
+        }
+
         if (image_size > length) {
             return true;
         }
     }
 
+
     uint8_t bits_for_pixel = get_bits(config);
     image_size *= bits_for_pixel;
+
+    if (config.VERBOSE) {
+        printf("Image size(%d bits): %lld, length: %d\n", bits_for_pixel, image_size, length);
+    }
 
     if (image_size > length) {
         return true;
@@ -117,7 +132,7 @@ get_pixel(cv::Mat &image, uint32_t &pixel_pos) {
 
 
 void
-set_pixel(cv::Mat &image, uint32_t &pixel_pos, const cv::Vec3b& pixel) {
+set_pixel(cv::Mat &image, uint32_t &pixel_pos, const cv::Vec3b &pixel) {
     int32_t i = (int32_t) pixel_pos / image.rows;
     int32_t j = (int32_t) pixel_pos % image.rows;
 

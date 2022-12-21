@@ -10,6 +10,9 @@ Configuration read_flags(int argc, char **argv) {
 
     std::vector<bool> required_flags(4, false);
     for (int i = 1; i < argc; ++i) {
+        if (strcmp(argv[i], "-v") == 0) {
+            config.VERBOSE = true;
+        }
         if (strcmp(argv[i], "-h") == 0) {
             if (config.VERBOSE)
                 std::cout << "Hide" << std::endl;
