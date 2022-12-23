@@ -19,8 +19,8 @@
 6. Add library folder to PATH with `export PATH="/path/to/boost_1_81_0:$PATH"`
 
 ### How to run
-* Compile program via `cmake . && make` and run the `Steganography` executable
-* CLion
+* Compile program via `cmake . && make`
+* Run `mpirun -np **proc_n** Steganography **flags**`
 
 ### Flags
 * **-v** for _verbose_
