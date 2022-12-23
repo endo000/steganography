@@ -2,8 +2,8 @@
 // Created by nsakn on 12/15/2022.
 //
 
-#ifndef STEGANOGRAFIA_UTILS_H
-#define STEGANOGRAFIA_UTILS_H
+#ifndef STEGANOGRAFIA_OPENMPI_UTILS_H
+#define STEGANOGRAFIA_OPENMPI_UTILS_H
 
 #include <vector>
 #include <cstdint>
@@ -36,4 +36,4 @@ read_pixel(const cv::Vec3b &pixel, const int8_t &channel_index, const uint8_t &b
 
 void message_add_header(std::vector<uint8_t> &message, const Configuration &config, const uint64_t &seed);
 
-#endif //STEGANOGRAFIA_UTILS_H
+#endif //STEGANOGRAFIA_OPENMPI_UTILS_H

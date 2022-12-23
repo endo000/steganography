@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <fstream>
 #include <iostream>
-#include <opencv2/core/mat.hpp>
+//#include <opencv2/core/mat.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
 #include "../Configuration.h"
@@ -68,7 +68,7 @@ bool check_sizes(const cv::Mat &image, const uint32_t &length, const Configurati
     uint64_t image_size = image.rows * image.cols; // pixels
 
     if (config.VERBOSE) {
-        printf("Image size: %lld, length: %d\n", image_size, length);
+        printf("Image size: %ld, length: %d\n", image_size, length);
     }
 
     if (image_size > length) {
@@ -79,7 +79,7 @@ bool check_sizes(const cv::Mat &image, const uint32_t &length, const Configurati
         image_size *= 3;
 
         if (config.VERBOSE) {
-            printf("Image size(all channels): %lld, length: %d\n", image_size, length);
+            printf("Image size(all channels): %ld, length: %d\n", image_size, length);
         }
 
         if (image_size > length) {
@@ -92,7 +92,7 @@ bool check_sizes(const cv::Mat &image, const uint32_t &length, const Configurati
     image_size *= bits_for_pixel;
 
     if (config.VERBOSE) {
-        printf("Image size(%d bits): %lld, length: %d\n", bits_for_pixel, image_size, length);
+        printf("Image size(%d bits): %ld, length: %d\n", bits_for_pixel, image_size, length);
     }
 
     if (image_size > length) {

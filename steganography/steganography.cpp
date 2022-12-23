@@ -23,7 +23,7 @@ steganography(const cv::Mat &original_image, std::vector<uint8_t> &message, cons
         seed = time(nullptr);
     }
     if (config.VERBOSE) {
-        printf("Seed: %lld\n", seed);
+        printf("Seed: %ld\n", seed);
     }
 
     message_add_header(message, config, seed);

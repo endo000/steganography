@@ -1,0 +1,4 @@
+files/hidden.png
+files/hidden_test.jpg
+files/hidden_test.png
+files/lenna.png
