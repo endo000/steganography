@@ -99,7 +99,7 @@ int64_t read_seed(cv::Mat &image, uint32_t &pixel_pos, const Configuration &conf
     }
 
     if (config.VERBOSE)
-        printf("%lld, End seed\n", seed);
+        printf("%ld, End seed\n", seed);
 
     return seed;
 }
@@ -155,7 +155,6 @@ read_message(cv::Mat &image, uint32_t &pixel_pos, const Configuration &config, u
              const uint32_t &length, std::vector<uint32_t> &random_positions) {
     uint8_t bits = get_bits(config);
     int8_t channel_index = get_channel_index(config);
-    int8_t channels = channel_index == -1 ? 3 : 1;
     std::vector<uint8_t> message(0);
 
     if (config.VERBOSE) {
