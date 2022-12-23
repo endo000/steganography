@@ -1,10 +1,14 @@
 ﻿# Steganography OpenMPI
 ## PARALELNO IN PORAZDELJENO RAČUNANJE
 
-### For this project I'm using Boost.MPI and OpenCV
+### For this project I'm using OpenMPI, Boost.MPI and OpenCV
 
 ### How to build
 > I'll explain how to build application only for Linux systems, for more convenient use on different hosts
+
+#### Install OpenMPI
+*TODO*
+[Source](https://webpages.charlotte.edu/abw/coit-grid01.uncc.edu/ParallelProgSoftware/Software/OpenMPIInstall.pdf)
 
 #### Install OpenCV
 1. You can use [this source](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html) or [this](https://stackoverflow.com/questions/65738296/how-to-run-a-simple-opencv-code-in-c-on-linux), worked for me
