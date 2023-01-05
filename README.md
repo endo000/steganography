@@ -62,6 +62,9 @@ Only for hiding
 
 1. Create `mpiuser` user
 2. One manager generates ssh key and sends public key to all machines
-3. Build the mpic++ app on all machines
-4. Manager creates hostfile
-5. Run a program with `mpirun -np 5 -hostfile steg_hostfile ./steganography`
+    > Generate **RSA** key, because **DSA** keys don't work by default
+3. Ensure, that you installed OpenMPI, OpenCV and Boost
+4. Clone this repo again as `mpiuser`
+5. Go to repo and compile the program via `cmake . && make`
+6. Manager creates hostfile with all workers
+7. Run a program with `mpirun -np 5 -hostfile steg_hostfile steganography/Steganography **flags**` in home directory on manager
