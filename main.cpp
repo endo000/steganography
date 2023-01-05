@@ -9,6 +9,7 @@
 #include "openmpi/RankData.h"
 #include <boost/mpi/environment.hpp>
 #include <boost/mpi/communicator.hpp>
+#include <boost/mpi/timer.hpp>
 #include <boost/mpi.hpp>
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/vector.hpp>
@@ -45,19 +46,35 @@ int main(int argc, char **argv) {
     boost::mpi::environment env;
     boost::mpi::communicator world;
 
+    char hostname[HOST_NAME_MAX];
+    char username[LOGIN_NAME_MAX];
+    gethostname(hostname, HOST_NAME_MAX);
+    getlogin_r(username, LOGIN_NAME_MAX);
+
+    printf("Host: %s, user: %s\n", hostname, username);
+    world.barrier();
+
+    printf("Wait 5 sec before start\n");
+    world.barrier();
+    boost::mpi::timer start_time = boost::mpi::timer();
+    while (start_time.elapsed() <= 5) {
+    }
+    printf("Start program\n");
+    world.barrier();
+
     OpenMpiConfiguration config;
-    std::vector<std::vector<RankData>> ranks_data;
-    std::vector<RankData> rank_data;
+    std::vector <std::vector<RankData>> ranks_data;
+    std::vector <RankData> rank_data;
 
     if (world.rank() == 0) {
         config = openmpi_read_flags(argc, argv);
 
-        std::vector<std::string> image_files = read_images(config);
+        std::vector <std::string> image_files = read_images(config);
 
         if (config.hide) {
-            std::vector<uint8_t> book = read_book(config);
+            std::vector <uint8_t> book = read_book(config);
 
-            std::vector<cv::Mat> images = files_to_mats(image_files);
+            std::vector <cv::Mat> images = files_to_mats(image_files);
             if (!openmpi_check_size(images, book, config)) {
                 std::cout << "Can't fit book into the images" << std::endl;
                 exit(1);
@@ -114,7 +131,7 @@ int main(int argc, char **argv) {
 
         boost::mpi::gather(world, rank_data, ranks_data, 0);
 
-        std::vector<uint8_t> book;
+        std::vector <uint8_t> book;
         if (world.rank() == 0) {
             for (const auto &rsd: ranks_data) {
                 for (const auto &rd: rsd) {
