@@ -55,3 +55,13 @@ Only for hiding
 
 ### Current bugs
 * Don't check if the text will fit into the image in OpenMPI assign text to images phase
+
+### How to run program on several machines
+> [Original guide](https://mpitutorial.com/tutorials/running-an-mpi-cluster-within-a-lan/).
+> We won't setup NFS, to make things easier
+
+1. Create `mpiuser` user
+2. One manager generates ssh key and sends public key to all machines
+3. Build the mpic++ app on all machines
+4. Manager creates hostfile
+5. Run a program with `mpirun -np 5 -hostfile steg_hostfile ./steganography`
