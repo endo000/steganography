@@ -68,3 +68,4 @@ Only for hiding
 5. Go to repo and compile the program via `cmake . && make`
 6. Manager creates hostfile with all workers
 7. Run a program with `mpirun -np 5 -hostfile steg_hostfile steganography/Steganography **flags**` in home directory on manager
+> If facing `Authorization required, but no authorization protocol specified` warning, set bash variable `export HWLOC_COMPONENTS=-gl`
