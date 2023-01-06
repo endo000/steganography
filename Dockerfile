@@ -28,11 +28,16 @@ ENV PATH="${PATH}:/boost_1_81_0"
 ENV LD_LIBRARY_PATH="/usr/local/lib"
 
 COPY authorized_keys /home/mpiuser/.ssh/authorized_keys
+RUN echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+RUN echo "PasswordAuthentication  no" >> /etc/ssh/sshd_config
 
 WORKDIR /home/mpiuser
 COPY --chown=mpiuser . /home/mpiuser/steganography
 
 USER mpiuser
+
+COPY id_rsa_docker /home/mpiuser/.ssh/
+COPY config /home/mpiuser/.ssh/
 
 WORKDIR /home/mpiuser/steganography
 RUN cmake .
@@ -40,9 +45,6 @@ RUN make
 
 USER root
 
-RUN echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
-RUN echo "PasswordAuthentication  no" >> /etc/ssh/sshd_config
-
-CMD ["/usr/sbin/sshd", "-D"]
+#CMD ["/usr/sbin/sshd", "-D"]
 #CMD ["/usr/sbin/sshd"]
-#CMD ["/bin/bash"]
+CMD ["/bin/bash"]
