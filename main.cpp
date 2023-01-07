@@ -47,9 +47,7 @@ int main(int argc, char **argv) {
     boost::mpi::communicator world;
 
     char hostname[HOST_NAME_MAX];
-    char username[LOGIN_NAME_MAX];
     gethostname(hostname, HOST_NAME_MAX);
-    getlogin_r(username, LOGIN_NAME_MAX);
 
     printf("Host: %s, user: %s\n", hostname, username);
     world.barrier();
