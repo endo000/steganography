@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
     char hostname[HOST_NAME_MAX];
     gethostname(hostname, HOST_NAME_MAX);
 
-    printf("Host: %s, user: %s\n", hostname, username);
+    printf("Host: %s\n", hostname);
     world.barrier();
 
     printf("Wait 5 sec before start\n");
