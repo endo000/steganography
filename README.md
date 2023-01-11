@@ -5,6 +5,7 @@
 
 ### How to build
 > I'll explain how to build application only for Linux systems, for more convenient use on different hosts
+> It's useful to check docker/ dockerfiles to build entire project dependencies on your system
 
 #### Install OpenMPI
 *TODO*
@@ -55,6 +56,7 @@ Only for hiding
 
 ### Current bugs
 * Don't check if the text will fit into the image in OpenMPI assign text to images phase
+* We tried to make docker containers for paralel computing, separately works ssh, local OpenMPI, Boost, OpenCV, but it doensn't work together with multiple docker containers on different hosts(but works on one host with multiple containers), there's some IP assign problems, instead of host ip, process set docker container ip
 
 ### How to run program on several machines
 > [Original guide](https://mpitutorial.com/tutorials/running-an-mpi-cluster-within-a-lan/).
