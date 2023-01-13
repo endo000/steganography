@@ -16,7 +16,9 @@
 #include <boost/serialization/bitset.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/format.hpp>
+#include <chrono>
 
+using namespace std::chrono;
 
 namespace boost {
     namespace serialization {
@@ -52,18 +54,19 @@ int main(int argc, char **argv) {
     printf("Host: %s\n", hostname);
     world.barrier();
 
-    printf("Wait 5 sec before start\n");
-    world.barrier();
-    boost::mpi::timer start_time = boost::mpi::timer();
-    while (start_time.elapsed() <= 5) {
-    }
-    printf("Start program\n");
-    world.barrier();
+    // printf("Wait 5 sec before start\n");
+    // world.barrier();
+    // boost::mpi::timer start_time = boost::mpi::timer();
+    // while (start_time.elapsed() <= 5) {
+    // }
+    // printf("Start program\n");
+    // world.barrier();
 
     OpenMpiConfiguration config;
     std::vector <std::vector<RankData>> ranks_data;
     std::vector <RankData> rank_data;
 
+    auto start = high_resolution_clock::now();
     if (world.rank() == 0) {
         config = openmpi_read_flags(argc, argv);
 
@@ -139,6 +142,12 @@ int main(int argc, char **argv) {
 
             write_book(book, config);
         }
+    }
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    if (world.rank() == 0) {
+        std::cout << duration.count() << std::endl;
     }
 
     return 0;
